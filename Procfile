@@ -1,1 +1,1 @@
-web: ./gradlew bootRun
+web: java -jar build/libs/reminder-0.0.1.jar

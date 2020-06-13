@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\wiz\.gradle\caches\modules-2\files-2.1\org.postgresql\postgresql\42.2.14\45fa6eef266aa80024ef2ab3688d9faa38c642e5\postgresql-42.2.14.jar" />
+
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection
+			connectionURL="jdbc:postgresql://192.168.136.129:5432/dgkim"
+			driverClass="org.postgresql.Driver" password="dgkim" userId="dgkim" />
+		<javaModelGenerator
+			targetPackage="io.github.donggi.reminder.dto"
+			targetProject="reminder" />
+		<javaClientGenerator
+			targetPackage="io.github.donggi.reminder.mapper"
+			targetProject="reminder" type="XMLMAPPER" />
+
+		<table tableName="t_user" />
+		<table tableName="t_user_session">
+			<columnOverride column="always_login_flg"
+				javaType="io.github.donggi.reminder.enums.CommonFlag"
+				typeHandler="io.github.donggi.reminder.enums.EnumValueTypeHandler" />
+			<columnOverride column="always_logout_flg"
+				javaType="io.github.donggi.reminder.enums.CommonFlag"
+				typeHandler="io.github.donggi.reminder.enums.EnumValueTypeHandler" />
+		</table>
+		<table tableName="t_user_reminder" />
+	</context>
+</generatorConfiguration>

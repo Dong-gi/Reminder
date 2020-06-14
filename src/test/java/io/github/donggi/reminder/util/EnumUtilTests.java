@@ -6,9 +6,11 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import io.github.donggi.reminder.enums.CommonFlag;
 
+@ActiveProfiles("dev")
 @SpringBootTest
 public class EnumUtilTests {
     @Test

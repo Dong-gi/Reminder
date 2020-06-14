@@ -10,6 +10,5 @@ public class UserLoginRequest {
     private String password;
     private String requestToken;
     private Boolean alwaysLogin = Boolean.FALSE;
-    private Boolean alwaysLogout = Boolean.FALSE;
 
 }

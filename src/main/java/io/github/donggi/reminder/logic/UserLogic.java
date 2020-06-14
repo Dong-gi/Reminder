@@ -52,9 +52,7 @@ public class UserLogic {
     /**
      * 신규 세션 시작
      */
-    public TUserSession registerSession(TUser tUser, boolean alwaysLogin, boolean alwaysLogout) {
-        if (alwaysLogin && alwaysLogout)
-            throw new ApiException(ApiResultCode.BAD_REQUEST, "로그인 동시에 로그아웃할 수는 없습니다");
+    public TUserSession registerSession(TUser tUser, boolean alwaysLogin) {
         Calendar limitDate = new GregorianCalendar();
         if (alwaysLogin)
             limitDate.set(Calendar.YEAR, 2222);
@@ -66,7 +64,6 @@ public class UserLogic {
         tUserSession.setNextToken(HashUtil.nextToken(tUser.getUserId(), limitDate.getTime()));
         tUserSession.setTokenLimitDate(limitDate.getTime());
         tUserSession.setAlwaysLoginFlg(CommonFlag.valueOf(alwaysLogin));
-        tUserSession.setAlwaysLogoutFlg(CommonFlag.valueOf(alwaysLogout));
         tUserSessionDao.upsert(tUserSession);
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -79,10 +76,7 @@ public class UserLogic {
     /**
      * 기존 세션 갱신
      */
-    public TUserSession refreshSession(TUser tUser, String requestToken, boolean alwaysLogin, boolean alwaysLogout) {
-        if (alwaysLogin && alwaysLogout)
-            throw new ApiException(ApiResultCode.BAD_REQUEST, "로그인 동시에 로그아웃할 수는 없습니다");
-
+    public TUserSession refreshSession(TUser tUser, String requestToken, boolean alwaysLogin) {
         TUserSession tUserSession = tUserSessionDao.select(tUser.getUserId());
         if (!tUserSession.getNextToken().equals(requestToken))
             throw new ApiException(ApiResultCode.BAD_REQUEST, "토큰이 일치하지 않습니다");
@@ -97,7 +91,6 @@ public class UserLogic {
         tUserSession.setNextToken(HashUtil.nextToken(tUser.getUserId(), limitDate.getTime()));
         tUserSession.setTokenLimitDate(limitDate.getTime());
         tUserSession.setAlwaysLoginFlg(CommonFlag.valueOf(alwaysLogin));
-        tUserSession.setAlwaysLogoutFlg(CommonFlag.valueOf(alwaysLogout));
         tUserSessionDao.upsert(tUserSession);
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();

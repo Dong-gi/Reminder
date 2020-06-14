@@ -11,7 +11,6 @@ create table if not exists t_user_session (
     next_token text,
     token_limit_date timestamptz,
     always_login_flg int not null,
-    always_logout_flg int not null,
     add_date timestamptz not null default now(),
     upd_date timestamptz not null default now()
 );

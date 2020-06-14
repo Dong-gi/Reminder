@@ -37,8 +37,8 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 public interface TUserSessionMapper {
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    BasicColumn[] selectList = BasicColumn.columnList(userId, nextToken, tokenLimitDate, alwaysLoginFlg,
-            alwaysLogoutFlg, addDate, updDate);
+    BasicColumn[] selectList = BasicColumn.columnList(userId, nextToken, tokenLimitDate, alwaysLoginFlg, addDate,
+            updDate);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type = SqlProviderAdapter.class, method = "select")
@@ -68,7 +68,6 @@ public interface TUserSessionMapper {
             @Result(column = "next_token", property = "nextToken", jdbcType = JdbcType.VARCHAR),
             @Result(column = "token_limit_date", property = "tokenLimitDate", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "always_login_flg", property = "alwaysLoginFlg", typeHandler = EnumValueTypeHandler.class, jdbcType = JdbcType.INTEGER),
-            @Result(column = "always_logout_flg", property = "alwaysLogoutFlg", typeHandler = EnumValueTypeHandler.class, jdbcType = JdbcType.INTEGER),
             @Result(column = "add_date", property = "addDate", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "upd_date", property = "updDate", jdbcType = JdbcType.TIMESTAMP) })
     List<TUserSession> selectMany(SelectStatementProvider selectStatement);
@@ -96,18 +95,16 @@ public interface TUserSessionMapper {
     default int insert(TUserSession record) {
         return MyBatis3Utils.insert(this::insert, record, TUserSession,
                 c -> c.map(userId).toProperty("userId").map(nextToken).toProperty("nextToken").map(tokenLimitDate)
-                        .toProperty("tokenLimitDate").map(alwaysLoginFlg).toProperty("alwaysLoginFlg")
-                        .map(alwaysLogoutFlg).toProperty("alwaysLogoutFlg").map(addDate).toProperty("addDate")
-                        .map(updDate).toProperty("updDate"));
+                        .toProperty("tokenLimitDate").map(alwaysLoginFlg).toProperty("alwaysLoginFlg").map(addDate)
+                        .toProperty("addDate").map(updDate).toProperty("updDate"));
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     default int insertMultiple(Collection<TUserSession> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, TUserSession,
                 c -> c.map(userId).toProperty("userId").map(nextToken).toProperty("nextToken").map(tokenLimitDate)
-                        .toProperty("tokenLimitDate").map(alwaysLoginFlg).toProperty("alwaysLoginFlg")
-                        .map(alwaysLogoutFlg).toProperty("alwaysLogoutFlg").map(addDate).toProperty("addDate")
-                        .map(updDate).toProperty("updDate"));
+                        .toProperty("tokenLimitDate").map(alwaysLoginFlg).toProperty("alwaysLoginFlg").map(addDate)
+                        .toProperty("addDate").map(updDate).toProperty("updDate"));
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -116,8 +113,7 @@ public interface TUserSessionMapper {
                 c -> c.map(userId).toPropertyWhenPresent("userId", record::getUserId).map(nextToken)
                         .toPropertyWhenPresent("nextToken", record::getNextToken).map(tokenLimitDate)
                         .toPropertyWhenPresent("tokenLimitDate", record::getTokenLimitDate).map(alwaysLoginFlg)
-                        .toPropertyWhenPresent("alwaysLoginFlg", record::getAlwaysLoginFlg).map(alwaysLogoutFlg)
-                        .toPropertyWhenPresent("alwaysLogoutFlg", record::getAlwaysLogoutFlg).map(addDate)
+                        .toPropertyWhenPresent("alwaysLoginFlg", record::getAlwaysLoginFlg).map(addDate)
                         .toPropertyWhenPresent("addDate", record::getAddDate).map(updDate)
                         .toPropertyWhenPresent("updDate", record::getUpdDate));
     }
@@ -151,8 +147,8 @@ public interface TUserSessionMapper {
     static UpdateDSL<UpdateModel> updateAllColumns(TUserSession record, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(userId).equalTo(record::getUserId).set(nextToken).equalTo(record::getNextToken)
                 .set(tokenLimitDate).equalTo(record::getTokenLimitDate).set(alwaysLoginFlg)
-                .equalTo(record::getAlwaysLoginFlg).set(alwaysLogoutFlg).equalTo(record::getAlwaysLogoutFlg)
-                .set(addDate).equalTo(record::getAddDate).set(updDate).equalTo(record::getUpdDate);
+                .equalTo(record::getAlwaysLoginFlg).set(addDate).equalTo(record::getAddDate).set(updDate)
+                .equalTo(record::getUpdDate);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -160,25 +156,23 @@ public interface TUserSessionMapper {
         return dsl.set(userId).equalToWhenPresent(record::getUserId).set(nextToken)
                 .equalToWhenPresent(record::getNextToken).set(tokenLimitDate)
                 .equalToWhenPresent(record::getTokenLimitDate).set(alwaysLoginFlg)
-                .equalToWhenPresent(record::getAlwaysLoginFlg).set(alwaysLogoutFlg)
-                .equalToWhenPresent(record::getAlwaysLogoutFlg).set(addDate).equalToWhenPresent(record::getAddDate)
+                .equalToWhenPresent(record::getAlwaysLoginFlg).set(addDate).equalToWhenPresent(record::getAddDate)
                 .set(updDate).equalToWhenPresent(record::getUpdDate);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     default int updateByPrimaryKey(TUserSession record) {
         return update(c -> c.set(nextToken).equalTo(record::getNextToken).set(tokenLimitDate)
-                .equalTo(record::getTokenLimitDate).set(alwaysLoginFlg).equalTo(record::getAlwaysLoginFlg)
-                .set(alwaysLogoutFlg).equalTo(record::getAlwaysLogoutFlg).set(addDate).equalTo(record::getAddDate)
-                .set(updDate).equalTo(record::getUpdDate).where(userId, isEqualTo(record::getUserId)));
+                .equalTo(record::getTokenLimitDate).set(alwaysLoginFlg).equalTo(record::getAlwaysLoginFlg).set(addDate)
+                .equalTo(record::getAddDate).set(updDate).equalTo(record::getUpdDate)
+                .where(userId, isEqualTo(record::getUserId)));
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     default int updateByPrimaryKeySelective(TUserSession record) {
         return update(c -> c.set(nextToken).equalToWhenPresent(record::getNextToken).set(tokenLimitDate)
                 .equalToWhenPresent(record::getTokenLimitDate).set(alwaysLoginFlg)
-                .equalToWhenPresent(record::getAlwaysLoginFlg).set(alwaysLogoutFlg)
-                .equalToWhenPresent(record::getAlwaysLogoutFlg).set(addDate).equalToWhenPresent(record::getAddDate)
+                .equalToWhenPresent(record::getAlwaysLoginFlg).set(addDate).equalToWhenPresent(record::getAddDate)
                 .set(updDate).equalToWhenPresent(record::getUpdDate).where(userId, isEqualTo(record::getUserId)));
     }
 }

@@ -15,8 +15,6 @@ public class TUserSession {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private CommonFlag alwaysLoginFlg;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private CommonFlag alwaysLogoutFlg;
-    @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date addDate;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date updDate;
@@ -59,16 +57,6 @@ public class TUserSession {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public void setAlwaysLoginFlg(CommonFlag alwaysLoginFlg) {
         this.alwaysLoginFlg = alwaysLoginFlg;
-    }
-
-    @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public CommonFlag getAlwaysLogoutFlg() {
-        return alwaysLogoutFlg;
-    }
-
-    @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setAlwaysLogoutFlg(CommonFlag alwaysLogoutFlg) {
-        this.alwaysLogoutFlg = alwaysLogoutFlg;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")

@@ -1,14 +1,18 @@
 package io.github.donggi.reminder.action;
 
-import java.util.Date;
-
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
+import io.github.donggi.reminder.annotation.NoAuthAction;
+
+@Controller
 public class IndexAction {
-    @RequestMapping("/*")
+
+    @NoAuthAction
+    @RequestMapping(value="/", method=RequestMethod.GET)
     public String index() {
-        return String.format("Hello! %s", new Date());
+        return "index";
     }
+
 }

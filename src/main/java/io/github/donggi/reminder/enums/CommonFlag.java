@@ -19,6 +19,10 @@ public enum CommonFlag implements EnumValue {
         return MAP.get(value);
     }
 
+    public static CommonFlag valueOf(boolean value) {
+        return value? ON : OFF;
+    }
+
     private CommonFlag(int value) {
         this.value = value;
     }

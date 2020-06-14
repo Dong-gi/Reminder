@@ -8,10 +8,12 @@ import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import lombok.extern.slf4j.Slf4j;
 
 
+@ActiveProfiles("dev")
 @SpringBootTest
 @Slf4j
 class DBConfigTests {
@@ -26,7 +28,7 @@ class DBConfigTests {
         {
             stmt.executeUpdate("create table if not exists test (id bigserial primary key, name text, add_date timestamptz default now())");
             stmt.executeUpdate("insert into test (name) values ('dgkim1'), ('dgkim2')");
-            
+
             ResultSet rs = stmt.executeQuery("select name from test");
             while (rs.next()) {
                 log.info("Read from DB: " + rs.getString("name"));

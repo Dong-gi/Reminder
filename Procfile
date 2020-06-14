@@ -1,1 +1,1 @@
-web: java -jar build/libs/reminder-0.0.1.jar
+web: java -Dspring.profiles.active=prd -jar build/libs/reminder-0.0.1.jar

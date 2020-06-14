@@ -33,4 +33,8 @@ public class TUserDao {
         return mapper.selectByPrimaryKey(userId).orElseThrow(NoSuchElementException::new);
     }
 
+    public TUser selectByNickname(@NonNull String nickname_) {
+        return mapper.selectOne(x -> x.where(nickname, isEqualTo(nickname_))).get();
+    }
+
 }

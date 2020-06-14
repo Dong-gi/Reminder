@@ -19,7 +19,10 @@ public class EnumValueTypeHandler<T extends Enum<T> & EnumValue> extends BaseTyp
     private final @NonNull Map<Integer, T> map;
 
     public EnumValueTypeHandler(@NonNull Class<T> type) {
-        this.map = EnumUtil.asMap(type.getEnumConstants()[0]);
+        if (type.getEnumConstants() == null)
+            this.map = null;
+        else
+            this.map = EnumUtil.asMap(type.getEnumConstants()[0]);
     }
 
 
@@ -57,7 +60,7 @@ public class EnumValueTypeHandler<T extends Enum<T> & EnumValue> extends BaseTyp
 
 
     private T getEnumByValue(int value) {
-        @NonNull T t = map.get(value);
+        T t = map.get(value);
         return t;
     }
 }

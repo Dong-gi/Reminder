@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 인증이 필요없는 액션
+ * 토큰이 필요없는(중복 실행해도 되는) 액션
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface NoAuthAction { }
+public @interface NoTokenAction { }

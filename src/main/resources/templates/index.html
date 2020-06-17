@@ -9,40 +9,43 @@
     <title>Reminder</title>
 
     <link id="w3css" rel="stylesheet" href="/css/w3.css">
+    <script id="sf-js" src="https://github.com/Dong-gi/SF/releases/download/0.3.2/sf.min.js"></script>
+    <script id="app-js" src="/js/app.min.js"></script>
     <script id="app-js" src="/js/app.js"></script>
 </head>
 
-<body>
-    <div id="main">
-        <div id="nav" style="position:-webkit-sticky;position:sticky;top:0px;vertical-align:middle"
-            class="w3-bar w3-blue w3-large"><button onclick="toggleSidebar()"
-                class="w3-bar-item w3-button w3-hover-theme">&#9776;</button><input id="query" type="text"
-                placeholder="search" class="w3-bar-item"></div>
-        <div id="contents" class="w3-padding w3-center">
-            <h1 class="marker">Index</h1>
-            <table class="marker">
-                <caption>수정사항</caption>
-                <tr>
-                    <th pre-sort="1">날짜</th>
-                    <th>내용</th>
-                </tr>
-                <tr>
-                    <td>2020-05-09</td>
-                    <td>Jade 템플릿 적용 완료</td>
-                </tr>
-                <tr>
-                    <td>2020-04-22</td>
-                    <td>Jade 템플릿 적용 시작</td>
-                </tr>
-                <tr>
-                    <td>2020-01-16</td>
-                    <td>GoormIDE로 이전</td>
-                </tr>
-            </table>
-            <hr>
-            &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.
+<body sf>
+    <header class="w3-bar w3-blue w3-large"
+        style="position:-webkit-sticky;position:sticky;top:0px;vertical-align:middle">
+        <button class="w3-bar-item w3-button w3-hover-theme" onclick="toggleSidebar()">&#9776;</button>
+        <input id="query" class="w3-bar-item" type="text" placeholder="search">
+    </header>
+    <nav class="w3-sidebar w3-bar-block w3-twothird w3-card w3-hide">
+        <div class="w3-container w3-theme-d2">
+            <span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">&times;</span>
         </div>
-    </div>
+        <a class="w3-bar-item w3-button" href="#">Menu</a>
+        <a class="w3-bar-item w3-button" href="#">Menu</a>
+        <a class="w3-bar-item w3-button" href="#">Menu</a>
+    </nav>
+    <section class="w3-padding w3-center">
+        <div id="views">
+            <form id="login" class="w3-container">
+                <fieldset>
+                    <label for="login-nickname"><b>닉네임</b></label>
+                    <input id="login-nickname" name="nickname" class="w3-input w3-border" type="text">
+                    <br>
+                    <label for="login-password"><b>비밀번호</b></label>
+                    <input id="login-password" name="password" class="w3-input w3-border" type="password">
+                    <br>
+                    <button id="userRegisterBtn" class="w3-btn w3-blue w3-third" style="float:none">사용자 등록</button>
+                    <button id="userLoginBtn" class="w3-btn w3-blue w3-third" style="float:none">로그인</button>
+                </fieldset>
+            </form>
+        </div>
+        <hr>
+        &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.
+    </section>
 </body>
 
 </html>

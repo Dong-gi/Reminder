@@ -27,7 +27,7 @@ public class UserService {
             throw new ApiException(ApiResultCode.NICKNAME_ALREADY_EXISTS, "가입하려는 닉네임이 이미 등록됐습니다");
 
         TUser tUser = userLogic.registerNewUser(request.getNickname(), request.getPassword());
-        TUserSession tUserSession = userLogic.registerSession(tUser, request.getAlwaysLogin());
+        TUserSession tUserSession = userLogic.registerSession(tUser.getUserId(), request.getAlwaysLogin());
 
         UserLoginResponse res = new UserLoginResponse();
         res.setUserId(tUserSession.getUserId());
@@ -42,7 +42,7 @@ public class UserService {
                 throw new ApiException(ApiResultCode.BAD_REQUEST, "userId가 있어야 세션 갱신이 가능합니다");
 
             TUser tUser = tUserDao.selectByUserId(request.getUserId());
-            TUserSession tUserSession = userLogic.refreshSession(tUser, request.getRequestToken(), request.getAlwaysLogin());
+            TUserSession tUserSession = userLogic.refreshSession(tUser.getUserId(), request.getRequestToken(), request.getAlwaysLogin());
 
             UserLoginResponse res = new UserLoginResponse();
             res.setUserId(tUser.getUserId());
@@ -55,7 +55,7 @@ public class UserService {
         TUser tUser = tUserDao.selectByNickname(request.getNickname());
         if (!tUser.getPwdHash().equals(HashUtil.getUserPwdHash(tUser.getUserId(), request.getNickname(), request.getPassword())))
             throw new ApiException(ApiResultCode.BAD_REQUEST, "비밀번호가 일치하지 않습니다");
-        TUserSession tUserSession = userLogic.registerSession(tUser, request.getAlwaysLogin());
+        TUserSession tUserSession = userLogic.registerSession(tUser.getUserId(), request.getAlwaysLogin());
         UserLoginResponse res = new UserLoginResponse();
         res.setUserId(tUserSession.getUserId());
         res.setRequestToken(tUserSession.getNextToken());

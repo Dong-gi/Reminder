@@ -52,7 +52,7 @@ public class UserLogic {
     /**
      * 신규 세션 시작
      */
-    public TUserSession registerSession(TUser tUser, boolean alwaysLogin) {
+    public TUserSession registerSession(Long userId, boolean alwaysLogin) {
         Calendar limitDate = new GregorianCalendar();
         if (alwaysLogin)
             limitDate.set(Calendar.YEAR, 2222);
@@ -60,8 +60,8 @@ public class UserLogic {
             limitDate.add(Calendar.MINUTE, 30);
 
         TUserSession tUserSession = new TUserSession();
-        tUserSession.setUserId(tUser.getUserId());
-        tUserSession.setNextToken(HashUtil.nextToken(tUser.getUserId(), limitDate.getTime()));
+        tUserSession.setUserId(userId);
+        tUserSession.setNextToken(HashUtil.nextToken(userId, limitDate.getTime()));
         tUserSession.setTokenLimitDate(limitDate.getTime());
         tUserSession.setAlwaysLoginFlg(CommonFlag.valueOf(alwaysLogin));
         tUserSessionDao.upsert(tUserSession);
@@ -76,19 +76,21 @@ public class UserLogic {
     /**
      * 기존 세션 갱신
      */
-    public TUserSession refreshSession(TUser tUser, String requestToken, boolean alwaysLogin) {
-        TUserSession tUserSession = tUserSessionDao.select(tUser.getUserId());
+    public TUserSession refreshSession(Long userId, String requestToken, Boolean alwaysLogin) {
+        TUserSession tUserSession = tUserSessionDao.select(userId);
         if (!tUserSession.getNextToken().equals(requestToken))
             throw new ApiException(ApiResultCode.BAD_REQUEST, "토큰이 일치하지 않습니다");
         if (tUserSession.getTokenLimitDate().before(new Date()))
             throw new ApiException(ApiResultCode.REQUEST_TOKEN_EXPIRED, "만료된 토큰으로 세션을 갱신할 수 없습니다");
 
         Calendar limitDate = new GregorianCalendar();
+        if (alwaysLogin == null)
+            alwaysLogin = tUserSession.getAlwaysLoginFlg().isOn();
         if (alwaysLogin)
             limitDate.set(Calendar.YEAR, 2222);
         else
             limitDate.add(Calendar.MINUTE, 30);
-        tUserSession.setNextToken(HashUtil.nextToken(tUser.getUserId(), limitDate.getTime()));
+        tUserSession.setNextToken(HashUtil.nextToken(userId, limitDate.getTime()));
         tUserSession.setTokenLimitDate(limitDate.getTime());
         tUserSession.setAlwaysLoginFlg(CommonFlag.valueOf(alwaysLogin));
         tUserSessionDao.upsert(tUserSession);

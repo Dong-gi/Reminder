@@ -2,6 +2,9 @@ package io.github.donggi.reminder.enums;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import io.github.donggi.reminder.util.EnumUtil;
 
 public enum ApiResultCode implements EnumValue {
@@ -44,4 +47,13 @@ public enum ApiResultCode implements EnumValue {
         return value;
     }
 
+    @JsonCreator
+    public static ApiResultCode forValue(int value) {
+        return valueOf(value);
+    }
+
+    @JsonValue
+    public int toValue() {
+        return getValue();
+    }
 }

@@ -23,8 +23,17 @@ public enum CommonFlag implements EnumValue {
         return value? ON : OFF;
     }
 
+
     private CommonFlag(int value) {
         this.value = value;
+    }
+
+    public boolean isOn() {
+        return this == ON;
+    }
+
+    public boolean isTrue() {
+        return this == ON;
     }
 
     @Override

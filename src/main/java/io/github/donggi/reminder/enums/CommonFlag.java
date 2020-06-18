@@ -2,6 +2,8 @@ package io.github.donggi.reminder.enums;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import io.github.donggi.reminder.util.EnumUtil;
 
 public enum CommonFlag implements EnumValue {
@@ -15,6 +17,7 @@ public enum CommonFlag implements EnumValue {
     private static final Map<Integer, CommonFlag> MAP = EnumUtil.asMap(OFF);
 
 
+    @JsonCreator
     public static CommonFlag valueOf(int value) {
         return MAP.get(value);
     }

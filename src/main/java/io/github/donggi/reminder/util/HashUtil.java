@@ -2,23 +2,30 @@ package io.github.donggi.reminder.util;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.Random;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.postgresql.util.MD5Digest;
 
 public class HashUtil {
 
-    public static byte[] getSalt(byte[] source, int length) {
-        if (source.length < 2)
+    private static final FastDateFormat format = FastDateFormat.getInstance("yyyyMMddHHmmssSSS");
+
+    public static byte[] getSalt(final byte[] source, final int length) {
+        if (source.length < 8)
             throw new IllegalArgumentException("source bytes too short");
-        final byte[] mix = new byte[] { 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+        byte[] copy = ByteBuffer.wrap(source).array();
+        Random r = new Random(new String(source).hashCode());
+        ArrayUtils.shuffle(copy, r);
         final byte[] salt = new byte[length];
-        byte x = source[0], y = source[1], z = (source.length > 2)? source[2] : (byte) ((x ^ (x << 4)) ^ (y ^ (y >>> 4)));
+        long x = copy[0] ^ r.nextLong(), y = copy[1] ^ r.nextLong(), z = copy[2] ^ r.nextLong();
         for (int i = 0; i < length; ++i) {
-            int pos = Math.abs(x ^ y ^ z);
-            salt[i] = (byte)(source[pos % source.length] ^ mix[pos % mix.length]);
+            long pattern = (x ^ (x >> 23)) ^ (z ^ (z >> 37));
+            salt[i] = (byte) pattern;
             x = y;
             y = z;
-            z = (source.length > 3 + i)? source[3+i] : (byte) ((mix[Math.abs(y) % mix.length] ^ (x << 4)) ^ (mix[Math.abs(x) % mix.length] ^ (y >>> 4))); 
+            z = copy[i % copy.length] ^ r.nextLong(); 
         }
         return salt;
     }
@@ -29,7 +36,7 @@ public class HashUtil {
 
     public static String nextToken(Long userId, Date limitDate) {
         StringBuilder builder = new StringBuilder();
-        byte[] dateBytes = limitDate.toString().getBytes();
+        byte[] dateBytes = format.format(limitDate).getBytes();
         for (byte b : getSalt(ByteBuffer.allocate(Long.BYTES + dateBytes.length).putLong(userId).put(dateBytes).array(), 48))
             builder.append(Character.forDigit(Math.abs(b) % Character.MAX_RADIX, Character.MAX_RADIX));
         return builder.toString();

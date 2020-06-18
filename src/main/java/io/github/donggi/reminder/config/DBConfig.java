@@ -17,7 +17,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @MapperScan("io.github.donggi.reminder.mapper")
 public class DBConfig {
 
-    @Bean(destroyMethod="")
+    @Bean
     @ConfigurationProperties("spring.datasource.hikari")
     public DataSource dataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();

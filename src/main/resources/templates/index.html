@@ -8,7 +8,8 @@
 
     <title>Reminder</title>
 
-    <link id="w3css" rel="stylesheet" href="/css/w3.css">
+    <link id="app-css" rel="stylesheet" href="/css/app.css">
+    <link id="w3-css" rel="stylesheet" href="/css/w3.css">
     <script id="sf-js" src="https://github.com/Dong-gi/SF/releases/download/0.3.2/sf.min.js"></script>
     <script id="app-js" src="/js/app.min.js"></script>
     <script id="app-js" src="/js/app.js"></script>
@@ -33,13 +34,18 @@
             <form id="login" class="w3-container">
                 <fieldset>
                     <label for="login-nickname"><b>닉네임</b></label>
-                    <input id="login-nickname" name="nickname" class="w3-input w3-border" type="text">
-                    <br>
+                    <input id="login-nickname" name="nickname" class="w3-input w3-border w3-margin-bottom" type="text">
+
                     <label for="login-password"><b>비밀번호</b></label>
-                    <input id="login-password" name="password" class="w3-input w3-border" type="password">
-                    <br>
-                    <button id="userRegisterBtn" class="w3-btn w3-blue w3-third" style="float:none">사용자 등록</button>
-                    <button id="userLoginBtn" class="w3-btn w3-blue w3-third" style="float:none">로그인</button>
+                    <input id="login-password" name="password" class="w3-input w3-border w3-margin-bottom" type="password">
+
+                    <input id="login-alwaysLogin" name="alwaysLogin" class="w3-margin-bottom" type="checkbox" checked>
+                    <label for="login-alwaysLogin">자동 로그인</label>
+
+                    <div>
+                        <button id="userRegisterBtn" class="w3-btn w3-blue w3-third" style="float:none">사용자 등록</button>
+                        <button id="userLoginBtn" class="w3-btn w3-blue w3-third" style="float:none">로그인</button>
+                    </div>
                 </fieldset>
             </form>
         </div>

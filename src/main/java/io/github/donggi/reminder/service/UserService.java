@@ -30,7 +30,7 @@ public class UserService {
         TUserSession tUserSession = userLogic.registerSession(tUser.getUserId(), request.getAlwaysLogin());
 
         UserLoginResponse res = new UserLoginResponse();
-        res.setUserId(tUserSession.getUserId());
+        res.setUserId(tUserSession.getUserId().toString());
         res.setRequestToken(tUserSession.getNextToken());
         return res;
     }
@@ -45,7 +45,7 @@ public class UserService {
             TUserSession tUserSession = userLogic.refreshSession(tUser.getUserId(), request.getRequestToken(), request.getAlwaysLogin());
 
             UserLoginResponse res = new UserLoginResponse();
-            res.setUserId(tUser.getUserId());
+            res.setUserId(tUser.getUserId().toString());
             res.setRequestToken(tUserSession.getNextToken());
             return res;
         }
@@ -57,7 +57,7 @@ public class UserService {
             throw new ApiException(ApiResultCode.BAD_REQUEST, "비밀번호가 일치하지 않습니다");
         TUserSession tUserSession = userLogic.registerSession(tUser.getUserId(), request.getAlwaysLogin());
         UserLoginResponse res = new UserLoginResponse();
-        res.setUserId(tUserSession.getUserId());
+        res.setUserId(tUserSession.getUserId().toString());
         res.setRequestToken(tUserSession.getNextToken());
         return res;
     }

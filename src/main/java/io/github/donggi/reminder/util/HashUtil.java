@@ -13,7 +13,7 @@ public class HashUtil {
     private static final FastDateFormat format = FastDateFormat.getInstance("yyyyMMddHHmmssSSS");
 
     public static byte[] getSalt(final byte[] source, final int length) {
-        if (source.length < 8)
+        if (source.length < 3)
             throw new IllegalArgumentException("source bytes too short");
         byte[] copy = ByteBuffer.wrap(source).array();
         Random r = new Random(new String(source).hashCode());

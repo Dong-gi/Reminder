@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class UserLoginResponse extends ApiResponse {
 
-    private Long userId;
+    private String userId;
     private String requestToken;
 
 }

@@ -44,7 +44,7 @@ public class UserServiceTests {
     @Order(2)
     public void refreshSession() {
         UserLoginRequest request = new UserLoginRequest();
-        request.setUserId(response.getUserId());
+        request.setUserId(Long.parseLong(response.getUserId()));
         request.setRequestToken(response.getRequestToken());
         response = userService.login(request);
         assertTrue(response.getApiResultCode() == ApiResultCode.OK);

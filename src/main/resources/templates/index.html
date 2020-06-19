@@ -18,23 +18,21 @@
 <body sf>
     <header class="w3-bar w3-blue w3-large"
         style="position:-webkit-sticky;position:sticky;top:0px;vertical-align:middle">
-        <button class="w3-bar-item w3-button w3-hover-theme" onclick="toggleSidebar()">&#9776;</button>
+        <button id="toggleSidebarBtn" class="w3-bar-item w3-button w3-hover-theme">&#9776;</button>
         <input id="query" class="w3-bar-item" type="text" placeholder="search">
     </header>
     <nav class="w3-sidebar w3-bar-block w3-twothird w3-card w3-hide">
-        <div class="w3-container w3-theme-d2">
-            <span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">&times;</span>
-        </div>
-        <a class="w3-bar-item w3-button" href="#">Menu</a>
-        <a class="w3-bar-item w3-button" href="#">Menu</a>
-        <a class="w3-bar-item w3-button" href="#">Menu</a>
+        <hr>
+        <a id="closeSidebarBtn" class="w3-bar-item w3-button" href="javascript:;">Close &times;</a>
+        <hr>
     </nav>
     <section class="w3-padding w3-center">
         <div id="views">
             <form id="login" class="w3-container">
+                <h1>사용자 등록/로그인</h1>
                 <fieldset>
                     <label for="login-nickname"><b>닉네임</b></label>
-                    <input id="login-nickname" name="nickname" class="w3-input w3-border w3-margin-bottom" type="text">
+                    <input id="login-nickname" name="nickname" class="w3-input w3-border w3-margin-top w3-margin-bottom" type="text">
 
                     <label for="login-password"><b>비밀번호</b></label>
                     <input id="login-password" name="password" class="w3-input w3-border w3-margin-bottom" type="password">
@@ -43,11 +41,14 @@
                     <label for="login-alwaysLogin">자동 로그인</label>
 
                     <div>
-                        <button id="userRegisterBtn" class="w3-btn w3-blue w3-third" style="float:none">사용자 등록</button>
-                        <button id="userLoginBtn" class="w3-btn w3-blue w3-third" style="float:none">로그인</button>
+                        <button id="userRegisterBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">사용자 등록</button>
+                        <button id="userLoginBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">로그인</button>
                     </div>
                 </fieldset>
             </form>
+        </div>
+        <div id="reminder" class="w3-hide">
+            lists...
         </div>
         <hr>
         &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.

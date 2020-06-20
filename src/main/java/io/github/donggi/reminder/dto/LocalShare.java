@@ -2,10 +2,7 @@ package io.github.donggi.reminder.dto;
 
 import javax.servlet.http.HttpSession;
 
-import lombok.Data;
-
-@Data
 public class LocalShare {
-    private Long userId;
-    private HttpSession session;
+    public static ThreadLocal<Long> userId = new ThreadLocal<>();
+    public static ThreadLocal<HttpSession> session = new ThreadLocal<>();
 }

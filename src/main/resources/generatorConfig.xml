@@ -28,6 +28,13 @@
 				javaType="io.github.donggi.reminder.enums.CommonFlag"
 				typeHandler="io.github.donggi.reminder.enums.EnumValueTypeHandler" />
 		</table>
-		<table tableName="t_user_reminder" />
+		<table tableName="t_user_reminder">
+			<columnOverride column="complete_flg"
+				javaType="io.github.donggi.reminder.enums.CommonFlag"
+				typeHandler="io.github.donggi.reminder.enums.EnumValueTypeHandler" />
+			<columnOverride column="del_flg"
+				javaType="io.github.donggi.reminder.enums.CommonFlag"
+				typeHandler="io.github.donggi.reminder.enums.EnumValueTypeHandler" />
+		</table>
 	</context>
 </generatorConfiguration>

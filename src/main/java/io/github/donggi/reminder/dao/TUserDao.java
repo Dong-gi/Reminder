@@ -15,7 +15,8 @@ import lombok.NonNull;
 @Repository
 public class TUserDao {
 
-    @Autowired TUserMapper mapper;
+    @Autowired
+    private TUserMapper mapper;
 
     public int insert(TUser tUser) {
         return mapper.insert(tUser);

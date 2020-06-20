@@ -9,11 +9,9 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 
 @Aspect
 @Component
-@Slf4j
 public class DtoAspect {
     @Before("execution(public * io.github.donggi.reminder.dao..insert*(..))")
     public void beforeInsert(JoinPoint jp) {
@@ -47,7 +45,6 @@ public class DtoAspect {
     @SneakyThrows
     private void fillDateColumns(Object o) {
         Class<?> clazz = o.getClass();
-        log.info(clazz.getCanonicalName());
         if (clazz.getCanonicalName().startsWith("io.github.donggi.reminder.dto")) {
             if (clazz.getMethod("getAddDate").invoke(o) == null)
                 clazz.getMethod("setAddDate", Date.class).invoke(o, new Date());

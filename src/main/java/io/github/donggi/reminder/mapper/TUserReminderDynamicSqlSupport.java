@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
+import io.github.donggi.reminder.enums.CommonFlag;
 
 public final class TUserReminderDynamicSqlSupport {
 
@@ -19,7 +20,9 @@ public final class TUserReminderDynamicSqlSupport {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<String> attachFile = TUserReminder.attachFile;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Integer> completeFlg = TUserReminder.completeFlg;
+    public static final SqlColumn<CommonFlag> completeFlg = TUserReminder.completeFlg;
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public static final SqlColumn<CommonFlag> delFlg = TUserReminder.delFlg;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<Date> addDate = TUserReminder.addDate;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -31,7 +34,10 @@ public final class TUserReminderDynamicSqlSupport {
         public final SqlColumn<Long> userId = column("user_id", JDBCType.BIGINT);
         public final SqlColumn<String> title = column("title", JDBCType.VARCHAR);
         public final SqlColumn<String> attachFile = column("attach_file", JDBCType.VARCHAR);
-        public final SqlColumn<Integer> completeFlg = column("complete_flg", JDBCType.INTEGER);
+        public final SqlColumn<CommonFlag> completeFlg = column("complete_flg", JDBCType.INTEGER,
+                "io.github.donggi.reminder.enums.EnumValueTypeHandler");
+        public final SqlColumn<CommonFlag> delFlg = column("del_flg", JDBCType.INTEGER,
+                "io.github.donggi.reminder.enums.EnumValueTypeHandler");
         public final SqlColumn<Date> addDate = column("add_date", JDBCType.TIMESTAMP);
         public final SqlColumn<Date> updDate = column("upd_date", JDBCType.TIMESTAMP);
 

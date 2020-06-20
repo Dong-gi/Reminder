@@ -46,7 +46,7 @@ public class ApiExceptionAspect {
     private void addApiAccessLog(ApiResultCode result, Exception e) {
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         LocalShare share = new ThreadLocal<LocalShare>().get();
-        log.info("{} - {} : {}", servletRequest.getRequestURI(), (share == null)? servletRequest.getRemoteAddr() : share.getUserId(), result.name());
+        log.info("{} - {} : {}", servletRequest.getRequestURI(), (share == null)? servletRequest.getRemoteAddr() : LocalShare.userId.get(), result.name());
         if (e != null)
             e.printStackTrace();
     }

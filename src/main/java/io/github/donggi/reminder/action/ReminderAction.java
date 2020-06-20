@@ -9,11 +9,9 @@ import io.github.donggi.reminder.annotation.NoTokenAction;
 import io.github.donggi.reminder.dao.TUserReminderDao;
 import io.github.donggi.reminder.dto.LocalShare;
 import io.github.donggi.reminder.response.ReminderListResponse;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/reminder/**/*")
-@Slf4j
 public class ReminderAction {
 
     @Autowired
@@ -23,7 +21,7 @@ public class ReminderAction {
     @RequestMapping(value="/list", method=RequestMethod.GET)
     public ReminderListResponse list() {
         ReminderListResponse response = new ReminderListResponse();
-        response.setList(tUserReminderDao.selectForClient(new ThreadLocal<LocalShare>().get().getUserId()));
+        response.setList(tUserReminderDao.selectForClient(LocalShare.userId.get()));
         return response;
     }
 

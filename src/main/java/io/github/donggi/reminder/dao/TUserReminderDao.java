@@ -4,6 +4,7 @@ import static io.github.donggi.reminder.mapper.TUserReminderDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,14 @@ import io.github.donggi.reminder.mapper.TUserReminderMapper;
 @Repository
 public class TUserReminderDao {
 
-    @Autowired TUserReminderMapper mapper;
+    @Autowired
+    private AtomicLong nextReminderId;
+    @Autowired
+    private TUserReminderMapper mapper;
+
+    public Long nextId() {
+        return nextReminderId.getAndIncrement();
+    }
 
     public TUserReminder selectByReminderId(Long reminderId) {
         return mapper.selectByPrimaryKey(reminderId).get();

@@ -9,7 +9,8 @@ import io.github.donggi.reminder.mapper.TUserSessionMapper;
 @Repository
 public class TUserSessionDao {
 
-    @Autowired TUserSessionMapper mapper;
+    @Autowired
+    private TUserSessionMapper mapper;
 
     public TUserSession select(Long userId) {
         return mapper.selectByPrimaryKey(userId).get();

@@ -10,11 +10,9 @@ import io.github.donggi.reminder.annotation.NoAuthAction;
 import io.github.donggi.reminder.request.UserLoginRequest;
 import io.github.donggi.reminder.response.UserLoginResponse;
 import io.github.donggi.reminder.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/user/**/*")
-@Slf4j
 public class UserAction {
 
     @Autowired
@@ -23,14 +21,12 @@ public class UserAction {
     @NoAuthAction
     @RequestMapping(value="/register", method=RequestMethod.POST)
     public UserLoginResponse register(@RequestBody UserLoginRequest request) {
-        log.info(request.toString());
         return userService.register(request);
     }
 
     @NoAuthAction
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public UserLoginResponse login(@RequestBody UserLoginRequest request) {
-        log.info(request.toString());
         return userService.login(request);
     }
 

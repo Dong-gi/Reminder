@@ -2,6 +2,7 @@ package io.github.donggi.reminder.dto;
 
 import java.util.Date;
 import javax.annotation.Generated;
+import io.github.donggi.reminder.enums.CommonFlag;
 
 public class TUserReminder {
 
@@ -14,7 +15,9 @@ public class TUserReminder {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private String attachFile;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Integer completeFlg;
+    private CommonFlag completeFlg;
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    private CommonFlag delFlg;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date addDate;
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -61,13 +64,23 @@ public class TUserReminder {
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Integer getCompleteFlg() {
+    public CommonFlag getCompleteFlg() {
         return completeFlg;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setCompleteFlg(Integer completeFlg) {
+    public void setCompleteFlg(CommonFlag completeFlg) {
         this.completeFlg = completeFlg;
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public CommonFlag getDelFlg() {
+        return delFlg;
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public void setDelFlg(CommonFlag delFlg) {
+        this.delFlg = delFlg;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")

@@ -9,12 +9,12 @@ public class Reminder {
     private Long reminderId;
     private String title;
     private String attachFile;
-    private Integer completeFlg;
+    private boolean completeFlg;
     
     public Reminder(TUserReminder reminder) {
         this.reminderId = reminder.getReminderId();
         this.title = reminder.getTitle();
         this.attachFile = reminder.getAttachFile();
-        this.completeFlg = reminder.getCompleteFlg();
+        this.completeFlg = reminder.getCompleteFlg().isTrue();
     }
 }

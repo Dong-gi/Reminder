@@ -32,18 +32,16 @@ public class AuthAspect {
             return jp.proceed();
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        LocalShare share = new LocalShare();
-        new ThreadLocal<LocalShare>().set(share);
-        share.setSession(servletRequest.getSession());
-        share.setUserId((Long)share.getSession().getAttribute(Texts.userId));
+        LocalShare.session.set(servletRequest.getSession());
+        LocalShare.userId.set((Long)LocalShare.session.get().getAttribute(Texts.userId));
 
         boolean noToken = ((MethodSignature) jp.getSignature()).getMethod().isAnnotationPresent(NoTokenAction.class);
         if (noToken)
             return jp.proceed();
 
         String clientToken = servletRequest.getHeader(Texts.requestToken).trim();
-        share.getSession().setAttribute(Texts.requestToken, userLogic.refreshSession(share.getUserId(), clientToken, null).getNextToken());
-        log.info("유저[{}] 세션 갱신. {} -> {}", share.getUserId(), clientToken, share.getSession().getAttribute(Texts.requestToken));
+        LocalShare.session.get().setAttribute(Texts.requestToken, userLogic.refreshSession(LocalShare.userId.get(), clientToken, null).getNextToken());
+        log.info("유저[{}] 세션 갱신. {} -> {}", LocalShare.userId.get(), clientToken, LocalShare.session.get().getAttribute(Texts.requestToken));
         return jp.proceed();
     }
 }

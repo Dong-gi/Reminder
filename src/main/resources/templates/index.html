@@ -16,6 +16,30 @@
 </head>
 
 <body sf>
+    <div class="w3-hide">
+        <ul>
+            <li template-id="reminder" class="w3-center">
+                <form class"w3-col s12">
+                    <input type="file" class="w3-hide" name="attachFile" accept="image/*">
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="completeFlg" style="height:24px;width:24px">
+                            </td>
+                            <td>
+                                <input name="title" class="w3-input" type="text">
+                                <button class="no-img-btn w3-btn w3-blue w3-margin-top">Attach image</button>
+                                <img>
+                            </td>
+                            <td>
+                                <button class="remove-btn w3-btn w3-red w3-circle" style="font-weight:bold">-</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </li>
+        </ul>
+    </div>
     <header class="w3-bar w3-blue w3-large"
         style="position:-webkit-sticky;position:sticky;top:0px;vertical-align:middle">
         <button id="toggleSidebarBtn" class="w3-bar-item w3-button w3-hover-theme">&#9776;</button>
@@ -25,33 +49,42 @@
         <hr>
         <a id="closeSidebarBtn" class="w3-bar-item w3-button" href="javascript:;">Close &times;</a>
         <hr>
+        <a id="logoutBtn" class="w3-bar-item w3-button" href="javascript:;">로그아웃</a>
     </nav>
-    <section class="w3-padding w3-center">
-        <div id="views">
-            <form id="login" class="w3-container">
-                <h1>사용자 등록/로그인</h1>
-                <fieldset>
-                    <label for="login-nickname"><b>닉네임</b></label>
-                    <input id="login-nickname" name="nickname" class="w3-input w3-border w3-margin-top w3-margin-bottom" type="text">
+    <section class="w3-padding">
+        <form id="login" class="w3-container w3-center">
+            <h1>사용자 등록/로그인</h1>
+            <fieldset class="w3-padding">
+                <label for="login-nickname"><b>닉네임</b></label>
+                <input id="login-nickname" name="nickname" class="w3-input w3-border w3-margin-bottom" type="text">
 
-                    <label for="login-password"><b>비밀번호</b></label>
-                    <input id="login-password" name="password" class="w3-input w3-border w3-margin-bottom" type="password">
+                <label for="login-password"><b>비밀번호</b></label>
+                <input id="login-password" name="password" class="w3-input w3-border w3-margin-bottom" type="password">
 
-                    <input id="login-alwaysLogin" name="alwaysLogin" class="w3-margin-bottom" type="checkbox" checked>
-                    <label for="login-alwaysLogin">자동 로그인</label>
+                <input id="login-alwaysLogin" name="alwaysLogin" class="w3-margin-bottom" type="checkbox" checked>
+                <label for="login-alwaysLogin">자동 로그인</label>
 
-                    <div>
-                        <button id="userRegisterBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">사용자 등록</button>
-                        <button id="userLoginBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">로그인</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+                <div>
+                    <button id="userRegisterBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">사용자 등록</button>
+                    <button id="userLoginBtn" class="w3-btn w3-blue w3-third w3-margin-bottom" style="float:none">로그인</button>
+                </div>
+            </fieldset>
+        </form>
         <div id="reminder" class="w3-hide">
-            lists...
+            <div class="w3-row">
+                <div id="filterAllBtn" class="w3-btn w3-col w3-blue s4">All</div>
+                <div id="filterActiveBtn" class="w3-btn w3-col w3-blue s4">Active</div>
+                <div id="filterDoneBtn" class="w3-btn w3-col w3-blue s4">Done</div>
+            </div>
+            <ul class="w3-ul w3-border w3-hoverable"></ul>
+            <div class="w3-row w3-center">
+                <button id="newReminderBtn" class="w3-btn w3-blue w3-col" style="float:none">New Reminder</button>
+            </div>
         </div>
         <hr>
-        &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.
+        <div class="w3-row w3-center w3-padding">
+            &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.
+        </div>
     </section>
 </body>
 

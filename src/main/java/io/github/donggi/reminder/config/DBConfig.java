@@ -1,5 +1,10 @@
 package io.github.donggi.reminder.config;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicLong;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,4 +42,12 @@ public class DBConfig {
         return new SqlSessionTemplate(sqlSessionFactory());
     }
 
+    @Bean
+    public AtomicLong nextReminderId() throws SQLException {
+        try (Connection con = dataSource().getConnection()) {
+            ResultSet result = con.createStatement().executeQuery("select nextval('t_user_reminder_reminder_id_seq'::regclass)");
+            result.next();
+            return new AtomicLong(result.getLong(1));
+        }
+    }
 }

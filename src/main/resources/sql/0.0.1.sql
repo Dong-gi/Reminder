@@ -21,6 +21,7 @@ create table if not exists t_user_reminder (
     title text not null,
     attach_file text,
     complete_flg int not null,
+    del_flg int not null,
     add_date timestamptz not null default now(),
     upd_date timestamptz not null default now()
 );

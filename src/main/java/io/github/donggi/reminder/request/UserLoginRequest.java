@@ -1,8 +1,10 @@
 package io.github.donggi.reminder.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class UserLoginRequest {
 
     private Long userId;

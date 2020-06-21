@@ -1,1 +1,1 @@
-web: java -Dspring.profiles.active=prd -jar build/libs/reminder-0.0.1.jar
+web: java -Dfile.encoding=UTF-8 -Dfile.client.encoding=UTF-8 -Dclient.encoding.override=UTF-8 -Dspring.profiles.active=prd -jar build/libs/reminder-0.0.1.jar

@@ -42,4 +42,12 @@ public class HashUtil {
         return builder.toString();
     }
 
+    public static String nextFileName(Long userId, String fileName) {
+        StringBuilder builder = new StringBuilder();
+        byte[] nameBytes = (fileName + System.nanoTime()).getBytes();
+        for (byte b : getSalt(ByteBuffer.allocate(Long.BYTES + nameBytes.length).putLong(userId).put(nameBytes).array(), 24))
+            builder.append(Character.forDigit(Math.abs(b) % Character.MAX_RADIX, Character.MAX_RADIX));
+        return builder.toString();
+    }
+
 }

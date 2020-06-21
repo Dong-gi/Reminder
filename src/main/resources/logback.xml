@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+
+    <include resource="logback-appenders.xml" />
+
+
+    <logger name="INFO_LOG" level="INFO" additivity="false">
+        <appender-ref ref="INFO_LOG" />
+    </logger>
+
+    <logger name="ERROR_LOG" level="ERROR" additivity="false">
+        <appender-ref ref="ERROR_LOG" />
+    </logger>
+
+    <logger name="io.github.donggi" level="INFO" additivity="false">
+        <appender-ref ref="INFO_LOG" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="INFO_LOG" />
+    </root>
+</configuration>

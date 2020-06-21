@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import io.github.donggi.reminder.constant.Texts;
+import io.github.donggi.reminder.constant.SessionKey;
 import io.github.donggi.reminder.dao.TUserDao;
 import io.github.donggi.reminder.dao.TUserSessionDao;
 import io.github.donggi.reminder.dto.TUser;
@@ -68,8 +68,10 @@ public class UserLogic {
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         HttpSession session = servletRequest.getSession();
-        session.setAttribute(Texts.userId, tUserSession.getUserId());
-        session.setAttribute(Texts.requestToken, tUserSession.getNextToken());
+        if (alwaysLogin)
+            session.setMaxInactiveInterval(0);
+        session.setAttribute(SessionKey.USER_ID, tUserSession.getUserId());
+        session.setAttribute(SessionKey.REQUEST_TOKEN, tUserSession.getNextToken());
         return tUserSession;
     }
 
@@ -97,8 +99,10 @@ public class UserLogic {
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         HttpSession session = servletRequest.getSession();
-        session.setAttribute(Texts.userId, tUserSession.getUserId());
-        session.setAttribute(Texts.requestToken, tUserSession.getNextToken());
+        if (alwaysLogin)
+            session.setMaxInactiveInterval(0);
+        session.setAttribute(SessionKey.USER_ID, tUserSession.getUserId());
+        session.setAttribute(SessionKey.REQUEST_TOKEN, tUserSession.getNextToken());
         return tUserSession;
     }
 

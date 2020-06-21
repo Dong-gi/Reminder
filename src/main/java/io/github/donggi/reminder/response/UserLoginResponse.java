@@ -8,6 +8,5 @@ import lombok.Setter;
 public class UserLoginResponse extends ApiResponse {
 
     private String userId;
-    private String requestToken;
 
 }

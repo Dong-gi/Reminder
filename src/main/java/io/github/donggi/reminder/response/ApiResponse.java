@@ -13,5 +13,6 @@ import lombok.Setter;
 public class ApiResponse {
 
     private ApiResultCode apiResultCode = ApiResultCode.OK;
+    private String requestToken;
 
 }

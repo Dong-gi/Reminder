@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import io.github.donggi.reminder.dto.Reminder;
 import io.github.donggi.reminder.dto.TUserReminder;
+import io.github.donggi.reminder.enums.CommonFlag;
 import io.github.donggi.reminder.mapper.TUserReminderMapper;
 
 @Repository
@@ -35,7 +36,18 @@ public class TUserReminderDao {
     }
 
     public List<Reminder> selectForClient(Long userId) {
-        return selectByUserId(userId).stream().map(Reminder::new).collect(Collectors.toList());
+        return selectByUserId(userId).stream().filter(x -> !x.getDelFlg().isOn()).map(Reminder::new).collect(Collectors.toList());
+    }
+
+    public int upsert(TUserReminder tUserReminder) {
+        if (mapper.selectByPrimaryKey(tUserReminder.getReminderId()).isPresent())
+            return mapper.updateByPrimaryKey(tUserReminder);
+        return mapper.insert(tUserReminder);
+    }
+
+    public int delete(TUserReminder tUserReminder) {
+        tUserReminder.setDelFlg(CommonFlag.ON);
+        return mapper.updateByPrimaryKey(tUserReminder);
     }
 
 }

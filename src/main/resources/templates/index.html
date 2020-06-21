@@ -12,7 +12,6 @@
     <link id="w3-css" rel="stylesheet" href="/css/w3.css">
     <script id="sf-js" src="https://github.com/Dong-gi/SF/releases/download/0.3.2/sf.min.js"></script>
     <script id="app-js" src="/js/app.min.js"></script>
-    <script id="app-js" src="/js/app.js"></script>
 </head>
 
 <body sf>
@@ -23,15 +22,15 @@
                     <input type="file" class="w3-hide" name="attachFile" accept="image/*">
                     <table style="width:100%">
                         <tr>
-                            <td>
+                            <td style="width:50px">
                                 <input type="checkbox" name="completeFlg" style="height:24px;width:24px">
                             </td>
                             <td>
-                                <input name="title" class="w3-input" type="text">
+                                <input name="title" class="w3-input w3-margin-bottom" type="text">
                                 <button class="no-img-btn w3-btn w3-blue w3-margin-top">Attach image</button>
                                 <img>
                             </td>
-                            <td>
+                            <td style="width:50px">
                                 <button class="remove-btn w3-btn w3-red w3-circle" style="font-weight:bold">-</button>
                             </td>
                         </tr>
@@ -76,13 +75,13 @@
                 <div id="filterActiveBtn" class="w3-btn w3-col w3-blue s4">Active</div>
                 <div id="filterDoneBtn" class="w3-btn w3-col w3-blue s4">Done</div>
             </div>
-            <ul class="w3-ul w3-border w3-hoverable"></ul>
+            <ul class="w3-ul w3-border"></ul>
             <div class="w3-row w3-center">
-                <button id="newReminderBtn" class="w3-btn w3-blue w3-col" style="float:none">New Reminder</button>
+                <button id="newReminderBtn" class="w3-btn w3-blue w3-col" style="float:none;position:fixed;left:0;bottom:0;">New Reminder</button>
             </div>
         </div>
         <hr>
-        <div class="w3-row w3-center w3-padding">
+        <div class="w3-row w3-center w3-padding" style="margin-bottom:2rem">
             &copy; 2020. <a href="mailto:hi.donggi@gmail.com">Donggi Kim</a> all rights reserved.
         </div>
     </section>

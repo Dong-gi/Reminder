@@ -5,12 +5,9 @@
     <include resource="logback-appenders.xml" />
 
 
-    <logger name="INFO_LOG" level="INFO" additivity="false">
-        <appender-ref ref="INFO_LOG" />
-    </logger>
-
     <logger name="ERROR_LOG" level="ERROR" additivity="false">
         <appender-ref ref="ERROR_LOG" />
+        <appender-ref ref="STDOUT" />
     </logger>
 
     <logger name="io.github.donggi" level="INFO" additivity="false">
@@ -19,5 +16,6 @@
 
     <root level="INFO">
         <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>

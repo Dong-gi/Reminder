@@ -16,7 +16,7 @@
             <FileNamePattern>${LOG_HOME}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d{HH:mm:ss.SSS} %msg%n</Pattern>
+            <Pattern>%d{HH:mm:ss.SSS} %logger{36} %msg%n</Pattern>
         </encoder>
     </appender>
 

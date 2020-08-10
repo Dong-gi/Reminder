@@ -70,6 +70,7 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
     public ThymeleafViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCache(useCache);
         return viewResolver;
     }
 

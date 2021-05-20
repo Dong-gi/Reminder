@@ -39,11 +39,11 @@ public class ApiExceptionAspect {
             result = jp.proceed();
             addApiAccessLog(ApiResultCode.OK, null);
         } catch (ApiException e) {
-            result = ((Class) result).newInstance();
+            result = ((Class<?>) result).newInstance();
             ((ApiResponse) result).setApiResultCode(e.getApiResultCode());
             addApiAccessLog(e.getApiResultCode(), e);
         } catch (Exception e) {
-            result = ((Class) result).newInstance();
+            result = ((Class<?>) result).newInstance();
             ((ApiResponse) result).setApiResultCode(ApiResultCode.INTERNAL_ERROR);
             addApiAccessLog(ApiResultCode.INTERNAL_ERROR, e);
         }
